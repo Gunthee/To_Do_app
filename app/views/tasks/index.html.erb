@@ -1,0 +1,18 @@
+<h1>Todo List</h1>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= task.name %>
+      <%= link_to 'Mark as complete', complete_task_path(task), method: :get %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>New Task</h2>
+<%= form_with model: @task, url: tasks_path, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <%= form.submit 'Create Task' %>
+<% end %>
